@@ -28,7 +28,6 @@ window.fbAsyncInit = function() {
               $('.user-name').text(response.name);
               $('.user-photo').attr('src', response.picture.data.url);
               $('#user').removeClass('hide');
-
               // ---------------
               // 讀取 like 的列表，並儲存到 likes, 以及下一組資料的連結到 next
               var likes = response.likes.data;
@@ -70,7 +69,7 @@ var loadPagesInfo = function(pages){
       $page.find('.likes').text(response.likes);
       FB.api(item.id+'/picture?type=large', function(response){
         // 塞資料到 html 中
-        $page.find('.thumbnail img').attr('src', response.data.url)
+        $page.find('.thumbnail img').attr('src', response.data.url);
         $page.appendTo(current);
         counter++;
         // 塞完資料以後處理一下斷行
