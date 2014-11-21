@@ -31,6 +31,7 @@ window.fbAsyncInit = function() {
 
               // ---------------
               // 讀取 like 的列表，並儲存到 likes, 以及下一組資料的連結到 next
+              var likes = response.likes
 
               //把讀到的資料放進html
               loadPagesInfo(likes);
@@ -66,10 +67,13 @@ var loadPagesInfo = function(pages){
       // 塞 name, about, like 數到 html 裡。
       FB.api(/*輸入圖片連結*/, function(response){
         // 塞資料到 html 中
+        $page.find('.thumbnail img').attr('src', response.data.url)
+        $page.appendTo(current);
         counter++;
         // 塞完資料以後處理一下斷行
         if(counter===pages.length){
           // 利用 .current div:nth-child(3n)，讓每三個page 斷行
+          $('.current div:nth-child(3n)').after('<div class="cleafix"></div>');
           current.children('div').unwrap();
         }
       });
